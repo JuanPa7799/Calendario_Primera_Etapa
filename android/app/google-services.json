@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "11063200747",
+    "project_id": "calendario-6e15f",
+    "storage_bucket": "calendario-6e15f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:11063200747:android:f0c9f4f925b67ac127e7ae",
+        "android_client_info": {
+          "package_name": "com.example.calendar_app_avanzada"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "11063200747-bjd2oaagnoumcih48nje24dbuo85sol5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKKhWMk6O84n7gyzrGfy4aItirIKGCqLU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "11063200747-bjd2oaagnoumcih48nje24dbuo85sol5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
