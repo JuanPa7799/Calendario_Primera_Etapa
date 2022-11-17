@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+//* Por lo tanto se creo este objeto-modelo
 class Event {
   late final String title;
   late final String description;
