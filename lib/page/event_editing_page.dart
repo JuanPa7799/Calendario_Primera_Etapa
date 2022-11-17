@@ -1,6 +1,7 @@
 import 'package:calendar_app_avanzada/model/event.dart';
 import 'package:calendar_app_avanzada/provider/event_provider.dart';
 import 'package:calendar_app_avanzada/utils.dart';
+import 'package:calendar_app_avanzada/widget/text_input.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -84,6 +85,8 @@ class _EventEditingPageState extends State<EventEditingPage> {
               const SizedBox(height: 12),
               //* Se manda llamar el constructor de las fechas
               buildDateTimePickers(),
+              //* Mandamos llamar nuestro constructor de widget de titulo
+              buildDescription(),
             ],
           ),
         ),
@@ -101,7 +104,7 @@ class _EventEditingPageState extends State<EventEditingPage> {
             //foregroundColor: Colors.transparent,
             shadowColor: Colors.transparent,
           ),
-          //*Al presionar se ejecuta una funcionalidad
+          //*Al presionar se ejecuta una funcionalidad para guardar toda la informacion proporcionada
           onPressed: saveForm,
           //* El icono es la palomita de guarardo y el texto es SAVE
           icon: const Icon(Icons.done),
@@ -124,6 +127,14 @@ class _EventEditingPageState extends State<EventEditingPage> {
             title != null && title.isEmpty ? 'Title cannot be empty' : null,
         //* Este metodo ontrolador "controller" para despues poder llegar a controlar lo que se ve en el titulo
         controller: titleController,
+      );
+
+  Widget buildDescription() => TextInput(
+        fontSize: 14.0,
+        hintText: "Descripción",
+        inputType: TextInputType.multiline,
+        controller: descriptionController,
+        maxLines: 4,
       );
 
   //* Metodo para llenar las fechas en una columna
@@ -306,18 +317,27 @@ class _EventEditingPageState extends State<EventEditingPage> {
 
   //* Se salva/guarda el formulario con este método
   Future saveForm() async {
-    //* Con esta llave ingresaremos a nuestra llave de formulario
+    //* Con esta llave ingresaremos a nuestra llave de formulario para ver si si esta llenos los datos requeridos/obligatorios.
     final isValid = _formKey.currentState!.validate();
 
+    //* Si tiene los datos requeridos...
     if (isValid) {
+      //*Se crea un nuevo objeto del tipo EVENTO 'Event'
       final event = Event(
+        //* En el mismo se guardan los datos del titulo
         title: titleController.text,
-        description: 'Description',
+        //* Descripcion
+        description: descriptionController.text,
+        //* Fecha de inicio
         from: fromDate,
+        //* FechaFinal
         to: toDate,
+        //* Si es todo el dia, el cualno estamos usando ahora
         isAllDay: false,
       );
+
       final isEditing = widget.event != null;
+      //* Se usa la gestion de estado del "Provider/provedoor"  y con el mismo obtenemos nuestro provedor de eventos y declaramos un objeto llamado "provider con este metodo"
       final provider = Provider.of<EventProvider>(context, listen: false);
 
       if (isEditing) {
@@ -325,9 +345,10 @@ class _EventEditingPageState extends State<EventEditingPage> {
 
         Navigator.of(context).pop();
       } else {
+        //* Se llama al metodo para agregar un nuevo evento, enviando nuestro metodo como información .
         provider.addEvent(event);
       }
-
+      //* Y se cierra esta ventana para abrir la de incio
       Navigator.of(context).pop();
     }
   }
