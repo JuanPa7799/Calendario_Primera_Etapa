@@ -6,14 +6,17 @@ import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 class CalendarWidget extends StatelessWidget {
+  //* En el metodo constructor se llenan los eventos ya creados en el 'EventProvider'
   @override
   Widget build(BuildContext context) {
     final events = Provider.of<EventProvider>(context).events;
 
     return SfCalendar(
       //*Regresa un SfCalendar, que es una vista del widget de calendario ya cargado por la libreria 'package:syncfusion_flutter_calendar/calendar.dart'.
-      view: CalendarView
-          .month, //* Es el modo de ver el calendario, se puede modificar para verlo de la mejor manera posible.
+      //* Es el modo de ver el calendario, se puede modificar para verlo de la mejor manera posible, en este caso por mes
+      // TODO: Puede llegarse a cambiar en el futuro por la decicion del usuario
+      view: CalendarView.month,
+      //* Se manda llamar una fuente de datos y se usa el 'dataSource: EventDataSource(events)', con los "events" para enviarle la informacion ya guardada
       dataSource: EventDataSource(events),
       initialSelectedDate: DateTime.now(),
       // headerStyle: CalendarHeaderStyle(
