@@ -18,24 +18,26 @@ class EventDataSource extends CalendarDataSource {
 
   //* Se anulan algunos emtodos para poder rellenarlos con nueva información (override)
   @override
-  //* Dato de inicio de la cita o evento
+  //* Dato de inicio de la cita o evento.
   DateTime getStartTime(int index) => getEvent(index).from;
 
   @override
-  //* Dato del final de la cita o evento
+  //* Dato del final de la cita o evento.
   DateTime getEndTime(int index) => getEvent(index).to;
 
   @override
-  //* Dato del titulo del evento
+  //* Dato del titulo del evento.
   String getSubject(int index) => getEvent(index).title;
 
   @override
-  //* Dato del titulo del evento
+  //* Dato del titulo del evento.
   String getNotes(int index) => getEvent(index).description;
 
   @override
+  //* Dato del color de fondo.
   Color getColor(int index) => getEvent(index).backgroundColor;
 
   @override
+  //* Dato de si es todo el dia.
   bool isAllDay(int index) => getEvent(index).isAllDay;
 }

@@ -26,6 +26,7 @@ class Utils {
     return '$time';
   }
 
+  //* Metodo para borrar los datos
   static DateTime removeTime(DateTime dateTime) => DateTime(
         dateTime.year,
         dateTime.month,

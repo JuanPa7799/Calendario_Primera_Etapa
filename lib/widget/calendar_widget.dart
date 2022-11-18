@@ -24,12 +24,15 @@ class CalendarWidget extends StatelessWidget {
       //     textAlign: TextAlign.center,
       //     backgroundColor: Colors.grey),
       //cellBorderColor: Colors.transparent,
+      //* Al presionar durnate un largo tiepo se abre esta funcion
       onLongPress: (details) {
         final provider = Provider.of<EventProvider>(context, listen: false);
-
+        //* Se guarda la fecha llamando a nuestro proveedor de eventos y se pasan los detalles
         provider.setDate(details.date!);
+        //* Este metodo "showModalBottomSheet" muestra el modelo de la hoja inferior y le pasamos un nuevo widget
         showModalBottomSheet(
           context: context,
+          //* El widget que se pasa es el de "TasksWidget"
           builder: (context) => TasksWidget(),
         );
       },

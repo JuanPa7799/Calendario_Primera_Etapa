@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+//*Widget creado para incluir la descripcion como un widget y poder generarlo
 class TextInput extends StatelessWidget {
   final String hintText;
   final double fontSize;

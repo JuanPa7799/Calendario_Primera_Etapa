@@ -23,8 +23,9 @@ class _EventEditingPageState extends State<EventEditingPage> {
   final _formKey = GlobalKey<FormState>();
   //* Se crea la varible controlador de edicion de texto
   final titleController = TextEditingController();
-  //* Parametro de fecha inicial
+  //* Se crea la varible controlador de edicion de texto
   final descriptionController = TextEditingController();
+  //* Parametro de fecha inicial
   late DateTime fromDate;
   //* Parametro de fecha final
   late DateTime toDate;
@@ -40,9 +41,11 @@ class _EventEditingPageState extends State<EventEditingPage> {
       //* Y en este caso con la fecha actual y la hora actual + dos horas en el segundo parametro
       toDate = DateTime.now().add(const Duration(hours: 2));
     } else {
+      //* Se mandan los parametros que ya se tienen para editarlos, MUCHO CUIDADO AQUI
       final event = widget.event!;
 
       titleController.text = event.title;
+      descriptionController.text = event.description;
       fromDate = event.from;
       toDate = event.to;
     }
@@ -129,6 +132,7 @@ class _EventEditingPageState extends State<EventEditingPage> {
         controller: titleController,
       );
 
+  //* Widget para el espacio de la descripcion
   Widget buildDescription() => TextInput(
         fontSize: 14.0,
         hintText: "Descripción",
